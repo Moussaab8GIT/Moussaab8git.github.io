@@ -12,96 +12,484 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: #fff;
+            background: #0a0e27;
             overflow-x: hidden;
         }
 
-        /* Navigation */
-        nav {
+        .stars {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            z-index: 1000;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
         }
 
-        nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            flex-wrap: wrap;
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
         }
 
-        nav ul li {
-            margin: 0 1.5rem;
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
         }
 
-        nav ul li a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s;
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
         }
 
-        nav ul li a:hover {
-            color: #667eea;
+        header {
+            text-align: center;
+            padding: 100px 20px 80px;
+            position: relative;
         }
 
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%);
+        .hero-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, transparent 70%);
+            filter: blur(80px);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
+        }
+
+        header h1 {
+            font-size: 4.5em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInDown 1s ease;
+            font-weight: 800;
+            letter-spacing: -2px;
+            position: relative;
+        }
+
+        .typing-container {
+            height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            color: white;
-            padding: 2rem;
+            margin-bottom: 30px;
         }
 
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease;
+        .typing-text {
+            font-size: 1.5em;
+            color: #a5b4fc;
+            font-weight: 500;
+            border-right: 2px solid #667eea;
+            padding-right: 5px;
+            animation: blink 0.7s step-end infinite;
         }
 
-        .hero-content h2 {
-            font-size: 1.5rem;
-            font-weight: 300;
-            margin-bottom: 2rem;
-            animation: fadeInUp 1s ease 0.2s both;
-            color: white;
+        @keyframes blink {
+            50% { border-color: transparent; }
         }
 
-        .hero-content p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            animation: fadeInUp 1s ease 0.4s both;
+        .cta-badge {
+            display: inline-block;
+            padding: 15px 35px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin: 20px 0;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4);
+            animation: float 3s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-badge::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         .contact-info {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 15px;
             flex-wrap: wrap;
-            animation: fadeInUp 1s ease 0.6s both;
+            margin-top: 30px;
         }
 
-        .contact-item {
+        .contact-btn {
+            color: white;
+            text-decoration: none;
+            padding: 12px 28px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 30px;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            font-weight: 500;
+        }
+
+        .contact-btn:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            border-color: rgba(102, 126, 234, 0.5);
+        }
+
+        .section {
+            margin-bottom: 80px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .section-header {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 15px;
+            margin-bottom: 50px;
         }
 
-        @keyframes fadeInUp {
+        .section-icon {
+            font-size: 2.5em;
+            filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.6));
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            background: linear-gradient(135deg, #667eea 0%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 35px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(240, 147, 251, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .glass-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-title {
+            font-size: 1.6em;
+            color: #fff;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .card-meta {
+            color: #a5b4fc;
+            font-size: 0.95em;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-description {
+            color: #cbd5e1;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .card-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card-list li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #cbd5e1;
+            line-height: 1.7;
+        }
+
+        .card-list li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+            border-color: rgba(102, 126, 234, 0.4);
+        }
+
+        .skill-card h4 {
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            color: #e0e7ff;
+            transition: all 0.3s;
+        }
+
+        .skill-tag:hover {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.4) 0%, rgba(118, 75, 162, 0.4) 100%);
+            transform: scale(1.05);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -44px;
+            top: 10px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: 4px solid #0a0e27;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.8);
+            z-index: 1;
+        }
+
+        .project-filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 12px 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1em;
+            color: #cbd5e1;
+            font-weight: 500;
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-color: transparent;
+            color: white;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            border-color: rgba(102, 126, 234, 0.5);
+        }
+
+        .project-card {
+            position: relative;
+        }
+
+        .project-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(240, 147, 251, 0.3) 100%);
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-bottom: 15px;
+            border: 1px solid rgba(102, 126, 234, 0.4);
+            color: #e0e7ff;
+            font-weight: 600;
+        }
+
+        .lang-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .lang-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .lang-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .lang-card h4 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .lang-level {
+            color: #a5b4fc;
+            font-size: 1.1em;
+        }
+
+        .soft-skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .soft-skill-item {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s;
+        }
+
+        .soft-skill-item:hover {
+            transform: translateX(10px);
+            border-color: rgba(102, 126, 234, 0.4);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
+        }
+
+        .soft-skill-icon {
+            font-size: 2em;
+            filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.6));
+        }
+
+        .soft-skill-text {
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
+
+        @keyframes fadeInDown {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(-50px);
             }
             to {
                 opacity: 1;
@@ -109,449 +497,497 @@
             }
         }
 
-        /* Section commune */
-        section {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            text-align: center;
+        .highlight {
             color: #667eea;
-            position: relative;
+            font-weight: 600;
         }
 
-        section h2::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: #667eea;
-            margin: 1rem auto;
-            border-radius: 2px;
-        }
-
-        /* À propos */
-        .about-content {
-            background: #f8f9fa;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        /* Expériences */
-        .experience-item {
-            background: white;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .experience-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-
-        .experience-item h3 {
-            color: #667eea;
-            margin-bottom: 0.5rem;
-        }
-
-        .experience-meta {
-            color: #666;
-            font-style: italic;
-            margin-bottom: 1rem;
-        }
-
-        .experience-item ul {
-            margin-left: 1.5rem;
-        }
-
-        .experience-item ul li {
-            margin-bottom: 0.5rem;
-        }
-
-        /* Compétences */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .skill-category {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .skill-category h3 {
-            color: #667eea;
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-        }
-
-        .skill-tag {
-            display: inline-block;
-            background: #e9ecef;
-            padding: 0.4rem 0.8rem;
-            margin: 0.3rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-        }
-
-        /* Projets */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .project-card h3 {
-            color: #667eea;
-            margin-bottom: 1rem;
-        }
-
-        /* Formation */
-        .education-item {
-            background: white;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border-left: 4px solid #667eea;
-            border-radius: 5px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-
-        .education-item h3 {
-            color: #667eea;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Footer */
-        footer {
-            background: #2d3748;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2rem;
+            header h1 {
+                font-size: 2.5em;
             }
-            
-            .hero-content h2 {
-                font-size: 1.2rem;
+            .typing-text {
+                font-size: 1.2em;
             }
-
-            section {
-                padding: 3rem 1rem;
+            .section-title {
+                font-size: 2em;
             }
-
-            nav ul li {
-                margin: 0.5rem;
+            .glass-card {
+                padding: 25px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <ul>
-            <li><a href="#accueil">Accueil</a></li>
-            <li><a href="#about">À propos</a></li>
-            <li><a href="#experience">Expériences</a></li>
-            <li><a href="#projects">Projets</a></li>
-            <li><a href="#skills">Compétences</a></li>
-            <li><a href="#education">Formation</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="accueil" class="hero">
-        <div class="hero-content">
-            <h1>Moussaab NASRI</h1>
-            <h2>Futur Ingénieur Big Data & Intelligence Artificielle</h2>
-            <p>À la recherche d'un stage de 6 mois à partir de février 2026</p>
+    <div class="stars" id="stars"></div>
+    
+    <div class="container">
+        <header>
+            <div class="hero-glow"></div>
+            <h1>MOUSSAAB NASRI</h1>
+            <div class="typing-container">
+                <div class="typing-text" id="typing"></div>
+            </div>
+            <div class="cta-badge">
+                🎯 Stage 6 mois • Février 2026
+            </div>
             <div class="contact-info">
-                <div class="contact-item">📧 nasrimoussaab691@gmail.com</div>
-                <div class="contact-item">📱 +33 7 53 16 87 15</div>
-                <div class="contact-item">📍 Pau, France</div>
+                <a href="mailto:nasrimoussaab691@gmail.com" class="contact-btn">📧 Email</a>
+                <a href="https://www.linkedin.com/in/moussaab-nasri-0ba443251/" target="_blank" class="contact-btn">💼 LinkedIn</a>
+                <a href="tel:+33753168715" class="contact-btn">📱 +33 7 53 16 87 15</a>
+                <a class="contact-btn">📍 Pau, France</a>
             </div>
-        </div>
-    </section>
+        </header>
 
-    <!-- À propos -->
-    <section id="about">
-        <h2>À propos</h2>
-        <div class="about-content">
-            <p>Étudiant ingénieur passionné par le Big Data et l'Intelligence Artificielle, je suis actuellement en formation à CY Tech, Pau. Fort d'une expérience en développement d'assistants intelligents et en automatisation, je recherche un stage de 6 mois pour approfondir mes compétences en IA et contribuer à des projets innovants.</p>
-            <br>
-            <p>Mes domaines d'expertise incluent le développement d'applications Full-Stack, l'apprentissage automatique, les architectures RAG, et le traitement de données en temps réel. Je maîtrise des technologies comme Python, React, TensorFlow, et les services cloud Azure.</p>
-        </div>
-    </section>
-
-    <!-- Expériences -->
-    <section id="experience">
-        <h2>Expériences Professionnelles</h2>
-        
-        <div class="experience-item">
-            <h3>Stage Assistant d'ingénieur - Novelis</h3>
-            <div class="experience-meta">Juillet - Septembre 2025</div>
-            <p><strong>Projet :</strong> Assistant intelligent pour l'automatisation des tests</p>
-            <ul>
-                <li>Développé un assistant intelligent basé sur le RAG capable d'analyser un cahier des charges, d'en extraire automatiquement les images et schémas, et de générer des scripts de test Cypress</li>
-                <li>Intégré Azure Computer Vision, FAISS et Streamlit pour créer une interface de test interactive et évolutive</li>
-                <li>Travaillé en binôme agile sous la supervision d'un Test Lead, avec un suivi des tâches sur Trello</li>
-                <li>Amélioré la couverture de tests et réduit le temps d'analyse manuelle d'environ 15%, optimisant ainsi l'efficacité du processus QA</li>
-            </ul>
-        </div>
-
-        <div class="experience-item">
-            <h3>Stage Full-Stack - ONEE</h3>
-            <div class="experience-meta">Août 2024 | Oujda, Maroc</div>
-            <p><strong>Projet :</strong> Application de gestion du parc informatique (React, Spring Boot, MySQL)</p>
-            <ul>
-                <li>Développement complet frontend-backend (POO) et intégration de la base de données pour la gestion des équipements, des utilisateurs et des fournisseurs</li>
-                <li>Mise en place des fonctionnalités de recherche et de filtrage, avec une interface moderne et responsive</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Projets -->
-    <section id="projects">
-        <h2>Projets Académiques</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <h3>🌦️ Pipeline Temps Réel</h3>
-                <p>Pipeline temps réel de données météo utilisant Kafka pour l'ingestion, Logstash pour le nettoyage et l'harmonisation, Elasticsearch pour le stockage et Kibana pour les dashboards automatisés. Le tout containerisé avec Docker pour une analyse centralisée.</p>
+        <!-- Formation -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">🎓</div>
+                <h2 class="section-title">Formation</h2>
             </div>
-
-            <div class="project-card">
-                <h3>💪 AI Fitness Coach</h3>
-                <p>Agent intelligent de recommandations sportives intégrant RAG, Chain of Thought et géolocalisation OpenStreetMap via Flask pour des conseils personnalisés.</p>
-            </div>
-
-            <div class="project-card">
-                <h3>🎬 Cloud Movie Recommendation</h3>
-                <p>Système de recommandations de films basé sur l'humeur, avec base Azure SQL, Azure Web App, logique backend en Python via Azure Functions, Azure OpenAI et intégration Azure Communication pour envoi automatique d'emails.</p>
-            </div>
-
-            <div class="project-card">
-                <h3>🏨 Hôtel Management System</h3>
-                <p>Système complet de gestion des réservations, clients et personnel avec interface web (PHP/JavaScript) et desktop (Java, Hibernate, Java Swing, C++/Qt).</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Compétences -->
-    <section id="skills">
-        <h2>Compétences Techniques</h2>
-        <div class="skills-grid">
-            <div class="skill-category">
-                <h3>💻 Langages</h3>
-                <div>
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">Java</span>
-                    <span class="skill-tag">C++</span>
-                    <span class="skill-tag">SQL</span>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="glass-card">
+                        <div class="card-content">
+                            <h3 class="card-title">CY Tech, Pau</h3>
+                            <div class="card-meta">
+                                <span class="meta-item">📅 2025 - Présent</span>
+                                <span class="meta-item">📍 France</span>
+                            </div>
+                            <p class="card-description">Cycle Ingénieur Big Data & Intelligence Artificielle</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <div class="skill-category">
-                <h3>🌐 Web & APIs</h3>
-                <div>
-                    <span class="skill-tag">React JS</span>
-                    <span class="skill-tag">Spring Boot</span>
-                    <span class="skill-tag">REST APIs</span>
+                <div class="timeline-item">
+                    <div class="glass-card">
+                        <div class="card-content">
+                            <h3 class="card-title">UIR, Rabat</h3>
+                            <div class="card-meta">
+                                <span class="meta-item">📅 2024 - 2025</span>
+                                <span class="meta-item">📍 Maroc</span>
+                            </div>
+                            <p class="card-description">Cycle Ingénieur Big Data & IA</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <div class="skill-category">
-                <h3>🤖 IA & ML</h3>
-                <div>
-                    <span class="skill-tag">TensorFlow</span>
-                    <span class="skill-tag">PyTorch</span>
-                    <span class="skill-tag">Keras</span>
-                    <span class="skill-tag">Scikit-learn</span>
-                    <span class="skill-tag">LangChain</span>
-                    <span class="skill-tag">Hugging Face</span>
-                    <span class="skill-tag">FAISS</span>
-                    <span class="skill-tag">Pinecone</span>
-                    <span class="skill-tag">RAG</span>
-                </div>
-            </div>
-
-            <div class="skill-category">
-                <h3>📊 Big Data</h3>
-                <div>
-                    <span class="skill-tag">Hadoop</span>
-                    <span class="skill-tag">Spark</span>
-                    <span class="skill-tag">NIFI</span>
-                    <span class="skill-tag">Flink</span>
-                    <span class="skill-tag">Pig</span>
-                    <span class="skill-tag">Kafka</span>
-                    <span class="skill-tag">Airflow</span>
-                </div>
-            </div>
-
-            <div class="skill-category">
-                <h3>☁️ Cloud</h3>
-                <div>
-                    <span class="skill-tag">Azure ML</span>
-                    <span class="skill-tag">Azure Blob</span>
-                    <span class="skill-tag">Cosmos DB</span>
-                    <span class="skill-tag">Google Cloud</span>
-                    <span class="skill-tag">Gemini</span>
-                </div>
-            </div>
-
-            <div class="skill-category">
-                <h3>🗄️ Bases de données</h3>
-                <div>
-                    <span class="skill-tag">MySQL</span>
-                    <span class="skill-tag">MongoDB</span>
-                    <span class="skill-tag">Neo4j</span>
-                </div>
-            </div>
-
-            <div class="skill-category">
-                <h3>📈 Visualisation</h3>
-                <div>
-                    <span class="skill-tag">Power BI</span>
-                    <span class="skill-tag">Kibana</span>
-                    <span class="skill-tag">Matplotlib</span>
-                </div>
-            </div>
-
-            <div class="skill-category">
-                <h3>🛠️ Outils</h3>
-                <div>
-                    <span class="skill-tag">Agile</span>
-                    <span class="skill-tag">Docker</span>
-                    <span class="skill-tag">UML</span>
+                <div class="timeline-item">
+                    <div class="glass-card">
+                        <div class="card-content">
+                            <h3 class="card-title">EHEI, Oujda</h3>
+                            <div class="card-meta">
+                                <span class="meta-item">📅 2021 - 2024</span>
+                                <span class="meta-item">📍 Maroc</span>
+                            </div>
+                            <p class="card-description">Cycle préparatoire et 1ʳᵉ année du cycle ingénieur</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div style="margin-top: 3rem;">
-            <h3 style="text-align: center; color: #667eea; margin-bottom: 1rem;">🌍 Langues</h3>
-            <div style="text-align: center;">
-                <span class="skill-tag">Anglais (courant)</span>
-                <span class="skill-tag">Français (courant)</span>
-                <span class="skill-tag">Arabe (maternelle)</span>
-                <span class="skill-tag">Espagnol (notions)</span>
+        <!-- Expériences -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">💼</div>
+                <h2 class="section-title">Expériences</h2>
+            </div>
+            
+            <div class="glass-card">
+                <div class="card-content">
+                    <h3 class="card-title">Stage Assistant d'Ingénieur - Novelis</h3>
+                    <div class="card-meta">
+                        <span class="meta-item">📅 Juillet - Septembre 2025</span>
+                    </div>
+                    <p class="card-description"><span class="highlight">Projet :</span> Assistant intelligent pour l'automatisation des tests</p>
+                    <ul class="card-list">
+                        <li>Développé un <span class="highlight">assistant intelligent basé sur le RAG</span> capable d'analyser un cahier des charges, d'en extraire automatiquement les images et schémas, et de générer des scripts de test Cypress</li>
+                        <li>Intégré <span class="highlight">Azure Computer Vision, FAISS et Streamlit</span> pour créer une interface de test interactive et évolutive</li>
+                        <li>Travaillé en <span class="highlight">binôme agile</span> sous la supervision d'un Test Lead, avec un suivi des tâches sur Trello</li>
+                        <li>Amélioré la couverture de tests et réduit le temps d'analyse manuelle d'environ <span class="highlight">15%</span>, optimisant ainsi l'efficacité du processus QA</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <div class="card-content">
+                    <h3 class="card-title">Stage Full-Stack - ONEE</h3>
+                    <div class="card-meta">
+                        <span class="meta-item">📅 Août 2024</span>
+                        <span class="meta-item">📍 Oujda, Maroc</span>
+                    </div>
+                    <p class="card-description"><span class="highlight">Projet :</span> Application de gestion du parc informatique (React, Spring Boot, MySQL)</p>
+                    <ul class="card-list">
+                        <li>Développement complet <span class="highlight">frontend-backend (POO)</span> et intégration de la base de données</li>
+                        <li>Gestion des équipements, utilisateurs et fournisseurs</li>
+                        <li>Mise en place des fonctionnalités de recherche et de filtrage avec interface moderne et responsive</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
-        <div style="margin-top: 3rem;">
-            <h3 style="text-align: center; color: #667eea; margin-bottom: 1rem;">✨ Soft Skills</h3>
-            <div style="text-align: center;">
-                <span class="skill-tag">Adaptation rapide</span>
-                <span class="skill-tag">Collaboration en équipe</span>
-                <span class="skill-tag">Résolution de problèmes</span>
-                <span class="skill-tag">Autonomie</span>
-                <span class="skill-tag">Communication claire</span>
+        <!-- Projets -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">🚀</div>
+                <h2 class="section-title">Projets Académiques</h2>
+            </div>
+
+            <div class="project-filters">
+                <button class="filter-btn active" onclick="filterProjects('all')">Tous</button>
+                <button class="filter-btn" onclick="filterProjects('ai')">IA & ML</button>
+                <button class="filter-btn" onclick="filterProjects('data')">Data Engineering</button>
+                <button class="filter-btn" onclick="filterProjects('cloud')">Cloud</button>
+            </div>
+
+            <div id="projects-container">
+                <div class="glass-card project-card" data-category="ai">
+                    <div class="card-content">
+                        <span class="project-tag">🤖 IA & Vision par Ordinateur</span>
+                        <h3 class="card-title">Multimodal News Image Retrieval</h3>
+                        <ul class="card-list">
+                            <li>Système de recherche d'images d'actualité basé sur texte</li>
+                            <li><span class="highlight">Embeddings CNN</span> pour les images et <span class="highlight">MiniLM</span> pour le texte</li>
+                            <li><span class="highlight">Clustering thématique</span> et moteur <span class="highlight">FAISS</span> pour recherche rapide</li>
+                            <li>Démonstrateur interactif avec <span class="highlight">Python/Streamlit</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="glass-card project-card" data-category="data">
+                    <div class="card-content">
+                        <span class="project-tag">📊 Big Data & Real-time</span>
+                        <h3 class="card-title">Pipeline Temps Réel de Données Météo</h3>
+                        <ul class="card-list">
+                            <li>Pipeline temps réel utilisant <span class="highlight">Kafka</span> pour l'ingestion</li>
+                            <li><span class="highlight">Logstash</span> pour le nettoyage et l'harmonisation des données</li>
+                            <li><span class="highlight">Elasticsearch</span> pour le stockage et <span class="highlight">Kibana</span> pour la visualisation</li>
+                            <li>Dashboards automatisés avec visualisation des tendances</li>
+                            <li>Containerisation avec <span class="highlight">Docker</span> pour une analyse centralisée</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="glass-card project-card" data-category="ai">
+                    <div class="card-content">
+                        <span class="project-tag">🤖 IA & RAG</span>
+                        <h3 class="card-title">AI Fitness Coach</h3>
+                        <ul class="card-list">
+                            <li><span class="highlight">Agent intelligent</span> de recommandations sportives</li>
+                            <li>Intégration de <span class="highlight">RAG</span> et <span class="highlight">Chain of Thought</span></li>
+                            <li>Géolocalisation avec <span class="highlight">OpenStreetMap</span> via Flask</li>
+                            <li>Recommandations personnalisées basées sur le contexte utilisateur</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="glass-card project-card" data-category="cloud">
+                    <div class="card-content">
+                        <span class="project-tag">☁️ Cloud & Azure</span>
+                        <h3 class="card-title">Cloud Movie Recommendation System</h3>
+                        <ul class="card-list">
+                            <li>Système de recommandations de films basé sur l'humeur</li>
+                            <li>Base <span class="highlight">Azure SQL</span> et déploiement sur <span class="highlight">Azure Web App</span></li>
+                            <li>Backend Python via <span class="highlight">Azure Functions</span></li>
+                            <li>Intégration <span class="highlight">Azure OpenAI</span> et <span class="highlight">Azure Communication</span></li>
+                            <li>Envoi automatique d'emails personnalisés</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
 
-    <!-- Formation -->
-    <section id="education">
-        <h2>Formation</h2>
-        
-        <div class="education-item">
-            <h3>CY Tech, Pau, France</h3>
-            <p>2025 - présent</p>
-        </div>
+        <!-- Compétences -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">⚡</div>
+                <h2 class="section-title">Compétences Techniques</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h4>💻 Langages</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">SQL</span>
+                    </div>
+                </div>
 
-        <div class="education-item">
-            <h3>UIR, Rabat, Maroc</h3>
-            <p>Cycle Ingénieur Big Data & IA</p>
-            <p>2024 - 2025</p>
-        </div>
+                <div class="skill-card">
+                    <h4>🌐 Web & APIs</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">React JS</span>
+                        <span class="skill-tag">Spring Boot</span>
+                        <span class="skill-tag">REST APIs</span>
+                    </div>
+                </div>
 
-        <div class="education-item">
-            <h3>EHEI, Oujda, Maroc</h3>
-            <p>Cycle préparatoire et 1ère année du cycle ingénieur</p>
-            <p>2021 - 2024</p>
-        </div>
-    </section>
+                <div class="skill-card">
+                    <h4>🤖 Machine Learning</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">Keras</span>
+                        <span class="skill-tag">Scikit-learn</span>
+                        <span class="skill-tag">LangChain</span>
+                    </div>
+                </div>
 
-    <!-- Contact -->
-    <section id="contact">
-        <h2>Me Contacter</h2>
-        <div style="text-align: center; background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-            <p style="margin-bottom: 1rem; font-size: 1.1rem;">Je suis disponible pour échanger sur des opportunités de stage ou de collaboration.</p>
-            <div style="margin-top: 2rem;">
-                <p><strong>📧 Email:</strong> nasrimoussaab691@gmail.com</p>
-                <p><strong>📱 Téléphone:</strong> +33 7 53 16 87 15</p>
-                <p><strong>📍 Localisation:</strong> Pau, France</p>
-                <p><strong>💼 LinkedIn:</strong> <a href="https://www.linkedin.com/in/moussaab-nasri-0ba443251/" style="color: #667eea;">Profil LinkedIn</a></p>
+                <div class="skill-card">
+                    <h4>📊 Big Data</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Hadoop</span>
+                        <span class="skill-tag">Spark</span>
+                        <span class="skill-tag">NIFI</span>
+                        <span class="skill-tag">Flink</span>
+                        <span class="skill-tag">Pig</span>
+                        <span class="skill-tag">Kafka</span>
+                        <span class="skill-tag">Airflow</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h4>🔍 RAG & Embeddings</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Hugging Face</span>
+                        <span class="skill-tag">FAISS</span>
+                        <span class="skill-tag">Pinecone</span>
+                        <span class="skill-tag">RAG</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h4>☁️ Cloud Platforms</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Azure ML</span>
+                        <span class="skill-tag">Azure Blob</span>
+                        <span class="skill-tag">Cosmos DB</span>
+                        <span class="skill-tag">Google Cloud</span>
+                        <span class="skill-tag">Gemini</span>
+                        <span class="skill-tag">AI Studio</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h4>🗄️ Bases de Données</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Neo4j</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h4>📈 Visualisation</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Power BI</span>
+                        <span class="skill-tag">Kibana</span>
+                        <span class="skill-tag">Matplotlib</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h4>🛠️ Outils & Méthodologies</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Agile</span>
+                        <span class="skill-tag">UML</span>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Moussaab NASRI. Tous droits réservés.</p>
-        <p>Portfolio créé avec passion pour mettre en valeur mon parcours en Big Data & IA</p>
-    </footer>
+        <!-- Langues -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">🌍</div>
+                <h2 class="section-title">Langues</h2>
+            </div>
+            <div class="lang-grid">
+                <div class="lang-card">
+                    <h4>🇫🇷</h4>
+                    <div style="color: #fff; font-weight: 600; margin: 10px 0;">Français</div>
+                    <div class="lang-level">Courant</div>
+                </div>
+                <div class="lang-card">
+                    <h4>🇬🇧</h4>
+                    <div style="color: #fff; font-weight: 600; margin: 10px 0;">Anglais</div>
+                    <div class="lang-level">Intermédiaire</div>
+                </div>
+                <div class="lang-card">
+                    <h4>🇪🇸</h4>
+                    <div style="color: #fff; font-weight: 600; margin: 10px 0;">Espagnol</div>
+                    <div class="lang-level">Notions</div>
+                </div>
+                <div class="lang-card">
+                    <h4>🇲🇦</h4>
+                    <div style="color: #fff; font-weight: 600; margin: 10px 0;">Arabe</div>
+                    <div class="lang-level">Maternelle</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Soft Skills -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">✨</div>
+                <h2 class="section-title">Soft Skills</h2>
+            </div>
+            <div class="soft-skills-grid">
+                <div class="soft-skill-item">
+                    <div class="soft-skill-icon">🚀</div>
+                    <div class="soft-skill-text">Adaptation rapide aux nouveaux environnements et processus</div>
+                </div>
+                <div class="soft-skill-item">
+                    <div class="soft-skill-icon">🤝</div>
+                    <div class="soft-skill-text">Collaboration efficace en équipe pluridisciplinaire</div>
+                </div>
+                <div class="soft-skill-item">
+                    <div class="soft-skill-icon">🧠</div>
+                    <div class="soft-skill-text">Analyse technique et résolution de problèmes complexes</div>
+                </div>
+                <div class="soft-skill-item">
+                    <div class="soft-skill-icon">⚡</div>
+                    <div class="soft-skill-text">Autonomie et rigueur organisationnelle</div>
+                </div>
+                <div class="soft-skill-item">
+                    <div class="soft-skill-icon">💬</div>
+                    <div class="soft-skill-text">Capacité de synthèse et communication claire</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="section" style="text-align: center; margin-top: 100px; margin-bottom: 60px;">
+            <div class="section-header" style="justify-content: center;">
+                <div class="section-icon">📬</div>
+                <h2 class="section-title">Me Contacter</h2>
+            </div>
+            <div class="glass-card" style="max-width: 600px; margin: 0 auto;">
+                <div class="card-content">
+                    <p style="color: #cbd5e1; font-size: 1.2em; margin-bottom: 30px;">
+                        Disponible pour un stage de 6 mois à partir de février 2026
+                    </p>
+                    <div style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
+                        <a href="mailto:nasrimoussaab691@gmail.com" class="contact-btn" style="display: inline-flex; align-items: center; gap: 10px; font-size: 1.1em;">
+                            📧 nasrimoussaab691@gmail.com
+                        </a>
+                        <a href="tel:+33753168715" class="contact-btn" style="display: inline-flex; align-items: center; gap: 10px; font-size: 1.1em;">
+                            📱 +33 7 53 16 87 15
+                        </a>
+                        <a href="https://www.linkedin.com/in/moussaab-nasri-0ba443251/" target="_blank" class="contact-btn" style="display: inline-flex; align-items: center; gap: 10px; font-size: 1.1em;">
+                            💼 LinkedIn
+                        </a>
+                        <div class="contact-btn" style="display: inline-flex; align-items: center; gap: 10px; font-size: 1.1em; cursor: default;">
+                            📍 Pau, France
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
+        // Create stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Typing effect
+        const texts = [
+            'Deep Learning',
+            'Data Analyst',
+            'Data Engineering',
+            'Data scientist',
+            'Machine Learning ',
+            
+        ];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingElement = document.getElementById('typing');
+
+        function type() {
+            const currentText = texts[textIndex];
+            
+            if (isDeleting) {
+                typingElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentText.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+
+        type();
+
+        // Filter projects
+        function filterProjects(category) {
+            const projects = document.querySelectorAll('.project-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            projects.forEach(project => {
+                if (category === 'all' || project.dataset.category === category) {
+                    project.style.display = 'block';
+                    setTimeout(() => {
+                        project.style.opacity = '1';
+                        project.style.transform = 'translateY(0)';
+                    }, 10);
+                } else {
+                    project.style.opacity = '0';
+                    project.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        project.style.display = 'none';
+                    }, 300);
+                }
+            });
+        }
+
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    target.scrollIntoView({ behavior: 'smooth' });
                 }
             });
-        });
-
-        // Animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.experience-item, .project-card, .skill-category, .education-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
         });
     </script>
 </body>
